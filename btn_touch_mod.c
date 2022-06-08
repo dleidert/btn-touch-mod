@@ -19,7 +19,7 @@ static void unblank_event(unsigned int code)
 	switch (code) {
 	case BTN_TOUCH:
 		pr_info("BTN_TOUCH requesting unblanking screen...\n");
-		do_unblank_screen(1);
+		do_unblank_screen(0);
 		break;
 	default:
 		break;
