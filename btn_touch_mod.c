@@ -1,3 +1,5 @@
+/* Parts of the code have been inspired by drivers/input/apm-power.c. */
+
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <linux/module.h>
