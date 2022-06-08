@@ -1,0 +1,4 @@
+Test-Command: modprobe btn_touch_mod
+Depends: @, linux-headers-generic | linux-headers
+Features: test-name=smoke-load-module
+Restrictions: needs-root, needs-recommends, isolation-container, superficial

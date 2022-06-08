@@ -1,0 +1,5 @@
+*-dkms/
+*.substvars
+.debhelper.log
+debhelper-build-stamp
+files/

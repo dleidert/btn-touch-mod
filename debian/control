@@ -1,0 +1,22 @@
+Source: btn-touch-mod
+Section: kernel
+Priority: optional
+Maintainer: Daniel Leidert <dleidert@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               dkms
+Standards-Version: 4.6.0
+#Homepage: 
+Vcs-Browser: https://gitlab.wgdd.org/fiverr/vanpeerind/btn-touch-dkms
+Vcs-Git: https://gitlab.wgdd.org/fiverr/vanpeerind/btn-touch-dkms.git
+Rules-Requires-Root: no
+
+Package: btn-touch-dkms
+Architecture: all
+Pre-Depends: dkms,
+             ${misc:Pre-Depends}
+Depends: linux-headers-generic | linux-headers,
+         ${misc:Depends}
+Description: make BTN_TOUCH events unblank the screen
+ GNOME screensaver is not unblanking the screen on BTN_TOUCH events. This module
+ registers an input handler for the touchscreen and tries to unblank the screen
+ if a BTN_TOUCH event occurs.

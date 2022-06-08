@@ -1,0 +1,11 @@
+PACKAGE_NAME="btn-touch-mod"
+PACKAGE_VERSION="#MODULE_VERSION#"
+
+AUTOINSTALL="yes"
+REMAKE_INITRD="no"
+
+MAKE[0]="make -C ${kernel_source_dir} M=${dkms_tree}/${PACKAGE_NAME}/${PACKAGE_VERSION}/build"
+CLEAN="make -C ${kernel_source_dir} M=${dkms_tree}/${PACKAGE_NAME}/${PACKAGE_VERSION}/build clean"
+
+BUILT_MODULE_NAME[0]="$PACKAGE_NAME"
+DEST_MODULE_LOCATION[0]="/"
