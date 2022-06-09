@@ -38,7 +38,7 @@ static void unblank_event(unsigned int code)
 		"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
 		NULL
 	};
-	char* argv[] = {
+	/*char* argv[] = {
 		"gdbus",
 		"call",
 		"--session",
@@ -47,8 +47,18 @@ static void unblank_event(unsigned int code)
 		"--method=org.gnome.ScreenSaver.SetActive",
 		"false",
 		NULL
-	};
+	};*/
 	int ret;
+	char **argv = kzalloc(sizeof(char *[8]), GFP_KERNEL);
+
+	argv[0] = "gdbus";
+	argv[1] = "call";
+	argv[2] = "--session";
+	argv[3] = "--dest=org.gnome.ScreenSaver";
+	argv[4] = "--object-path=/org/gnome/ScreenSaver";
+	argv[5] = "--method=org.gnome.ScreenSaver.SetActive";
+	argv[6] = "false";
+	argv[7] = "NULL";
 
 	switch (code) {
 	case BTN_TOUCH:
