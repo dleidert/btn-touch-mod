@@ -35,7 +35,8 @@ static void unblank_event(unsigned int code)
 		"HOME=/",
 		"TERM=linux",
 		"PATH=/sbin:/bin:/usr/sbin:/usr/bin",
-		 NULL
+		"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+		NULL
 	};
 	char* argv[] = {
 		"gdbus",
