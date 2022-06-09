@@ -87,18 +87,18 @@ static void btn_touch_disconnect(struct input_handle *handle)
 
 static const struct input_device_id btn_touch_ids[] = {
 	{
-		.flags = INPUT_DEVICE_ID_MATCH_EVBIT | INPUT_DEVICE_ID_MATCH_ABSBIT,
-		.evbit = { BIT_MASK(EV_ABS) },
+		.flags  = INPUT_DEVICE_ID_MATCH_EVBIT | INPUT_DEVICE_ID_MATCH_ABSBIT,
+		.evbit  = { BIT_MASK(EV_ABS) },
 		.absbit = { BIT_MASK(ABS_X) },
 	},
 	{
-		.flags = INPUT_DEVICE_ID_MATCH_EVBIT | INPUT_DEVICE_ID_MATCH_ABSBIT,
-		.evbit = { BIT_MASK(EV_ABS) },
+		.flags  = INPUT_DEVICE_ID_MATCH_EVBIT | INPUT_DEVICE_ID_MATCH_ABSBIT,
+		.evbit  = { BIT_MASK(EV_ABS) },
 		.absbit = { BIT_MASK(ABS_Y) },
 	},
 	{
-		.flags = INPUT_DEVICE_ID_MATCH_EVBIT | INPUT_DEVICE_ID_MATCH_ABSBIT,
-		.evbit = { BIT_MASK(EV_ABS) },
+		.flags  = INPUT_DEVICE_ID_MATCH_EVBIT | INPUT_DEVICE_ID_MATCH_ABSBIT,
+		.evbit  = { BIT_MASK(EV_ABS) },
 		.absbit = { BIT_MASK(ABS_MT_TRACKING_ID) },
 	},
 	{
