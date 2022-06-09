@@ -18,7 +18,6 @@ MODULE_VERSION("0.0.1");
 
 static void unblank_event(unsigned int code)
 {
-	struct subprocess_info* sub_info;
 	static char* envp[] = {
 		"HOME=/",
 		"TERM=linux",
@@ -39,19 +38,13 @@ static void unblank_event(unsigned int code)
 
 	switch (code) {
 	case BTN_TOUCH:
-		sub_info = call_usermodehelper_setup(argv[0], argv, envp, GFP_ATOMIC, NULL, NULL, NULL);
-		if(sub_info == NULL)
-			printk(KERN_ERR "btn-touch: ENOMEM error.\n");
+		pr_info("BTN_TOUCH requesting unblanking screen.");
+		ret = call_usermodehelper(argv[0], argv, envp, 0);
 
-		pr_info("BTN_TOUCH requesting unblanking screen...");
-		ret = call_usermodehelper_exec(sub_info, 0);
-
-		if (ret < 0) {
-			pr_info("failed.\n");
-			printk(KERN_ERR "btn-touch: Error %d running user helper.\n", ret);
-		} else {
-			pr_info("successful.\n");
-		}
+		if (ret < 0)
+			pr_info("BTN_TOUCH unblanking screen failed with error %d.\n", ret);
+		else
+			pr_info("BTN_TOUCH unblanking screen successful.\n");
 		break;
 	default:
 		break;
