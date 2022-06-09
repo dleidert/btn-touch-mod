@@ -8,7 +8,7 @@
 #include <linux/slab.h>
 #include <linux/input.h>
 #include <linux/input-event-codes.h>
-#include <linux/vt_kern.h>
+#include <linux/kmod.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Daniel Leidert");
@@ -18,10 +18,40 @@ MODULE_VERSION("0.0.1");
 
 static void unblank_event(unsigned int code)
 {
+	struct subprocess_info* sub_info;
+	static char* envp[] = {
+		"HOME=/",
+		"TERM=linux",
+		"PATH=/sbin:/bin:/usr/sbin:/usr/bin",
+		 NULL
+	};
+	char* argv[] = {
+		"gdbus",
+		"call",
+		"--session",
+		"--dest=org.gnome.ScreenSaver",
+		"--object-path=/org/gnome/ScreenSaver",
+		"--method=org.gnome.ScreenSaver.SetActive",
+		"false",
+		NULL
+	};
+	int ret;
+
 	switch (code) {
 	case BTN_TOUCH:
-		pr_info("BTN_TOUCH requesting unblanking screen...\n");
-		do_unblank_screen(0);
+		sub_info = call_usermodehelper_setup(argv[0], argv, envp, GFP_ATOMIC, NULL, NULL, NULL);
+		if(sub_info == NULL)
+			printk(KERN_ERR "btn-touch: ENOMEM error.\n");
+
+		pr_info("BTN_TOUCH requesting unblanking screen...");
+		ret = call_usermodehelper_exec(sub_info, 0);
+
+		if (ret < 0) {
+			pr_info("failed.\n");
+			printk(KERN_ERR "btn-touch: Error %d running user helper.\n", ret);
+		} else {
+			pr_info("successful.\n");
+		}
 		break;
 	default:
 		break;
