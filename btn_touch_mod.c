@@ -39,7 +39,7 @@ static void unblank_event(unsigned int code)
 	switch (code) {
 	case BTN_TOUCH:
 		pr_info("BTN_TOUCH requesting unblanking screen.");
-		ret = call_usermodehelper(argv[0], argv, envp, 0);
+		ret = call_usermodehelper(argv[0], argv, envp, UMH_NO_WAIT);
 
 		if (ret < 0)
 			pr_info("BTN_TOUCH unblanking screen failed with error %d.\n", ret);
