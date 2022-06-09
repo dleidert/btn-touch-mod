@@ -69,8 +69,10 @@ static void unblank_event(unsigned int code)
 	}
 }
 
-static void btn_touch_event(struct input_handle *handle, unsigned int type,
-                            unsigned int code, int value)
+static void btn_touch_event(struct input_handle *handle,
+                            unsigned int type,
+                            unsigned int code,
+                            int value)
 {
 	/* only react on btn touch events */
 	if (value != 1)
@@ -117,7 +119,6 @@ static int btn_touch_connect(struct input_handler *handler,
 
 	return 0;
 }
-
 
 static void btn_touch_disconnect(struct input_handle *handle)
 {
