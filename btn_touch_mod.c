@@ -23,11 +23,6 @@ static int init_func(struct subprocess_info *info, struct cred *new)
 	return 0;
 }
 
-static void free_argv(struct subprocess_info *info)
-{
-	kfree(info->argv);
-}
-
 static void unblank_event(unsigned int code)
 {
 	struct subprocess_info *info;
@@ -38,7 +33,7 @@ static void unblank_event(unsigned int code)
 		"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
 		NULL
 	};
-	/*char* argv[] = {
+	static char* argv[] = {
 		"gdbus",
 		"call",
 		"--session",
@@ -47,22 +42,12 @@ static void unblank_event(unsigned int code)
 		"--method=org.gnome.ScreenSaver.SetActive",
 		"false",
 		NULL
-	};*/
+	};
 	int ret;
-	char **argv = kzalloc(sizeof(char *[8]), GFP_KERNEL);
-
-	argv[0] = "gdbus";
-	argv[1] = "call";
-	argv[2] = "--session";
-	argv[3] = "--dest=org.gnome.ScreenSaver";
-	argv[4] = "--object-path=/org/gnome/ScreenSaver";
-	argv[5] = "--method=org.gnome.ScreenSaver.SetActive";
-	argv[6] = "false";
-	argv[7] = "NULL";
 
 	switch (code) {
 	case BTN_TOUCH:
-		info = call_usermodehelper_setup(argv[0], argv, envp, GFP_KERNEL, init_func, free_argv, NULL);
+		info = call_usermodehelper_setup(argv[0], argv, envp, GFP_KERNEL, init_func, NULL, NULL);
 		if (info == NULL) return;
 
 		pr_info("BTN_TOUCH requesting unblanking screen.");
