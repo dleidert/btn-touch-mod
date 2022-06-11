@@ -1,2 +1,2 @@
-unblank_screen usr/libexec/btn-touch/
+unblank-screen usr/libexec/btn-touch/
 debian/kiosk.conf etc/modules-load.d/

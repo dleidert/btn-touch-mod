@@ -6,4 +6,7 @@
 *.order
 *.symvers
 *.test
-unblank_screen
+.btn_touch_mod.*
+.btn-touch-mod.*
+.modules.*
+unblank-screen

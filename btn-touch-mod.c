@@ -26,7 +26,7 @@ static void unblank_event(unsigned int code)
 		NULL
 	};
 	static char* argv[] = {
-		"/usr/libexec/btn-touch/unblank_screen",
+		"/usr/libexec/btn-touch/unblank-screen",
 		NULL
 	};
 	int ret;
