@@ -1,5 +1,7 @@
-btn-touch (0.0.1~0) unstable; urgency=medium
+btn-touch-mod (0.0.1~1.gbp08fc2c) UNRELEASED; urgency=medium
 
-  * 
+  ** SNAPSHOT build @08fc2c7932c2b4967594c8d013e1c253ce304df4 **
 
- -- Daniel Leidert <dleidert@debian.org>  Sat, 11 Jun 2022 20:24:20 +0200
+  *
+
+ -- Daniel Leidert <dleidert@debian.org>  Sat, 11 Jun 2022 20:24:53 +0200
