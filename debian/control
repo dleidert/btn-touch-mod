@@ -5,7 +5,6 @@ Maintainer: Daniel Leidert <dleidert@debian.org>
 Build-Depends: debhelper-compat (= 13),
                dkms
 Standards-Version: 4.6.0
-#Homepage: 
 Vcs-Browser: https://gitlab.wgdd.org/fiverr/vanpeerind/btn-touch-dkms
 Vcs-Git: https://gitlab.wgdd.org/fiverr/vanpeerind/btn-touch-dkms.git
 Rules-Requires-Root: no
