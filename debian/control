@@ -14,7 +14,8 @@ Architecture: any
 Pre-Depends: dkms,
              ${misc:Pre-Depends}
 Depends: linux-headers-generic | linux-headers,
-         ${misc:Depends}
+         ${misc:Depends},
+         ${shlibs:Depends}
 Description: make BTN_TOUCH events unblank the screen
  GNOME screensaver is not unblanking the screen on BTN_TOUCH events. This module
  registers an input handler for the touchscreen and tries to unblank the screen
