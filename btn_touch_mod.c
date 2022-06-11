@@ -16,16 +16,8 @@ MODULE_DESCRIPTION("A module to unblank the screen in case of a touch event.");
 MODULE_VERSION("0.0.1");
 //MODULE_SUPPORTED_DEVICE("input/usb-Weida_Hi-Tech_CoolTouch_System-event-if00");
 
-static int init_func(struct subprocess_info *info, struct cred *new)
-{
-	new->uid = new->euid = new->suid = new->fsuid = KUIDT_INIT(1000);
-	new->gid = new->egid = new->sgid = new->fsgid = KGIDT_INIT(1000);
-	return 0;
-}
-
 static void unblank_event(unsigned int code)
 {
-	struct subprocess_info *info;
 	static char* envp[] = {
 		"HOME=/",
 		"TERM=linux",
@@ -34,25 +26,16 @@ static void unblank_event(unsigned int code)
 		NULL
 	};
 	static char* argv[] = {
-		"gdbus",
-		"call",
-		"--session",
-		"--dest=org.gnome.ScreenSaver",
-		"--object-path=/org/gnome/ScreenSaver",
-		"--method=org.gnome.ScreenSaver.SetActive",
-		"false",
+		"/usr/libexec/btn-touch/unblank_screen",
 		NULL
 	};
 	int ret;
 
 	switch (code) {
 	case BTN_TOUCH:
-		info = call_usermodehelper_setup(argv[0], argv, envp, GFP_KERNEL, init_func, NULL, NULL);
-		if (info == NULL) return;
-
 		pr_info("BTN_TOUCH requesting unblanking screen.");
-		ret = call_usermodehelper_exec(info, UMH_NO_WAIT);
-		//ret = call_usermodehelper(argv[0], argv, envp, UMH_NO_WAIT);
+		// use '0' instead of UMH_NO_WAIT
+		ret = call_usermodehelper(argv[0], argv, envp, 0);
 
 		if (ret < 0)
 			pr_info("BTN_TOUCH unblanking screen failed with error %d.\n", ret);
