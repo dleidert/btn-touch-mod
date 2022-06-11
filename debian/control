@@ -10,7 +10,7 @@ Vcs-Git: https://gitlab.wgdd.org/fiverr/vanpeerind/btn-touch-dkms.git
 Rules-Requires-Root: no
 
 Package: btn-touch-dkms
-Architecture: all
+Architecture: any
 Pre-Depends: dkms,
              ${misc:Pre-Depends}
 Depends: linux-headers-generic | linux-headers,
