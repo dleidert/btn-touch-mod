@@ -1,7 +1,5 @@
-btn-touch-mod (0.0.1~4.gbpe6a43b) UNRELEASED; urgency=medium
+btn-touch-mod (0.0.1) jammy; urgency=medium
 
-  ** SNAPSHOT build @e6a43b1be7267f60356fd4cc51d91312044e1791 **
+  * Initial release.
 
-  *
-
- -- Daniel Leidert <dleidert@debian.org>  Sat, 11 Jun 2022 21:04:20 +0200
+ -- Daniel Leidert <dleidert@debian.org>  Sat, 11 Jun 2022 21:47:32 +0200
