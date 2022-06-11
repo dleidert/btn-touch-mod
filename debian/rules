@@ -1,10 +1,20 @@
 #!/usr/bin/make -f
 #export DH_VERBOSE=1
 
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+
 include /usr/share/dpkg/pkg-info.mk
+include /usr/share/dpkg/buildflags.mk
 
 %:
 	dh $@ --with=dkms --buildsystem=none
+
+override_dh_auto_build:
+	$(MAKE) unblank_screen
+
+override_dh_auto_clean:
+	rm -f $(CURDIR)/unblank_screen.o $(CURDIR)/unblank_screen
 
 override_dh_dkms:
 	dh_dkms -V $(DEB_VERSION_UPSTREAM)

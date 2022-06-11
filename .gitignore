@@ -1,0 +1,9 @@
+*.cmd
+*.ko
+*.mod
+*.mod.*
+*.o
+*.order
+*.symvers
+*.test
+unblank_screen
