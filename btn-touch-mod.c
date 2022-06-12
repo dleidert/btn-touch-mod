@@ -14,7 +14,6 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Daniel Leidert");
 MODULE_DESCRIPTION("A module to unblank the screen in case of a touch event.");
 MODULE_VERSION("0.0.1");
-//MODULE_SUPPORTED_DEVICE("input/usb-Weida_Hi-Tech_CoolTouch_System-event-if00");
 
 static void unblank_event(unsigned int code)
 {
