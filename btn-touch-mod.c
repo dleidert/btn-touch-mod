@@ -13,7 +13,7 @@
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Daniel Leidert");
 MODULE_DESCRIPTION("A module to unblank the screen in case of a touch event.");
-MODULE_VERSION("0.0.1");
+MODULE_VERSION("0.0.2");
 
 static void unblank_event(unsigned int code)
 {
